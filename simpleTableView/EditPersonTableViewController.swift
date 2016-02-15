@@ -16,18 +16,61 @@ protocol personDataChanged  {
 class EditPersonTableViewController: UITableViewController,dobDataChanged {
     var person:Person?
     var delegate: personDataChanged?
+    var saveButton:UIBarButtonItem?
+    var editsChanged:Bool = false {
+        willSet(incomingStatus) {
+            print("About to set status to:  \(incomingStatus)")
+            if incomingStatus == true {
+                // If the surname is not valid then disable the save button
+                if isSurnameValid().isValid == false {
+                    print("ERROR: Surname invalid will not Save")
+                    self.saveButton?.enabled = false
+                   return
+                }
+
+                self.saveButton?.enabled = true
+            }
+            else {
+                self.saveButton?.enabled = false
+            }
+        }
+    }
+    
+    @IBAction func editSurnameChanged(sender: UITextField) {
+        print("Surname Updated")
+        editsChanged = true
+    }
+    
+    @IBAction func editGenderChanged(sender: AnyObject) {
+        print("Gender Updated")
+        editsChanged = true
+    }
+
+    @IBAction func editJobChanged(sender: UITextField) {
+        print("Job Updated")
+        editsChanged = true
+    }
+
+    @IBAction func editFirstNameChanged(sender: UITextField) {
+        print("Firstname Updated")
+        editsChanged = true
+    }
     
     @IBOutlet weak var editSurname: UITextField!
     @IBOutlet weak var editFirstName: UITextField!
     @IBOutlet weak var editGender: UISegmentedControl!
     @IBOutlet weak var editJobDescription: UITextField!
     @IBOutlet weak var editDOB: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Edit"
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "savePerson:")
+        saveButton = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "savePerson:")
+        navigationItem.rightBarButtonItem = saveButton
+        editsChanged = false
 
         // get the Person data and put into the edit fields
         editSurname.text = person?.lastName
@@ -78,15 +121,16 @@ class EditPersonTableViewController: UITableViewController,dobDataChanged {
     }
     
     func savePerson(sender:AnyObject) {
-        print("Saved")
-        if let surname = editSurname.text {
-            let trimmedString = surname.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-            // A person's last name is required for the Person object to be valid
-            if trimmedString.characters.count == 0 {
-                return
-            }
-            person?.lastName = trimmedString
+        print("About to Save")
+        let retTuple = isSurnameValid()
+        if retTuple.isValid == true {
+            person?.lastName = retTuple.surname!
         }
+        else {
+            print("ERROR: Surname invalid will not Save")
+            return
+        }
+        
         person?.firstname = editFirstName.text!
         person?.jobDescription = editJobDescription.text!
         
@@ -104,9 +148,28 @@ class EditPersonTableViewController: UITableViewController,dobDataChanged {
         }
         // tell the delegate to update its data
         self.delegate?.personDidUpdate()
+        print("Saved OK")
+        editsChanged = false
+
     }
 
     func dobDidUpdate(newDOB:String) {
        editDOB.text = newDOB
+        editsChanged = true
+    }
+    
+    // Check if the surname is valid and return a tuple with surname or nil and a bool to indicate validity
+    func isSurnameValid() -> (surname:String?,isValid:Bool) {
+        if let surname = editSurname.text {
+            let trimmedString = surname.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            // A person's last name is required for the Person object to be valid
+            if trimmedString.characters.count == 0 {
+                return (nil,isValid:false)
+            }
+            else {
+                return (trimmedString,isValid:true)
+            }
+        }
+        return (nil,isValid:false)
     }
 }

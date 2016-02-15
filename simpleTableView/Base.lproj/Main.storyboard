@@ -76,6 +76,9 @@
                                                     <rect key="frame" x="116.5" y="7" width="465.5" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                                    <connections>
+                                                        <action selector="editSurnameChanged:" destination="eVU-Vh-HO9" eventType="editingChanged" id="dpB-jp-GR1"/>
+                                                    </connections>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Surname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKg-Rt-VM8">
                                                     <rect key="frame" x="18" y="11" width="68.5" height="20.5"/>
@@ -110,6 +113,9 @@
                                                     <rect key="frame" x="115" y="7" width="467" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                                    <connections>
+                                                        <action selector="editFirstNameChanged:" destination="eVU-Vh-HO9" eventType="editingChanged" id="SNw-fh-JcC"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -143,6 +149,9 @@
                                                         <segment title="Male"/>
                                                         <segment title="Female"/>
                                                     </segments>
+                                                    <connections>
+                                                        <action selector="editGenderChanged:" destination="eVU-Vh-HO9" eventType="valueChanged" id="YQK-Ds-wya"/>
+                                                    </connections>
                                                 </segmentedControl>
                                             </subviews>
                                             <constraints>
@@ -171,6 +180,9 @@
                                                     <rect key="frame" x="160" y="7" width="422" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                                    <connections>
+                                                        <action selector="editJobChanged:" destination="eVU-Vh-HO9" eventType="editingChanged" id="vae-XG-tMn"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -199,6 +211,9 @@
                                                     <rect key="frame" x="133" y="7" width="367" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="editDOBChanged:" destination="eVU-Vh-HO9" eventType="editingChanged" id="hS6-YE-Os7"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>

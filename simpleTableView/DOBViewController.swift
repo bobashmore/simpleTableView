@@ -27,6 +27,7 @@ class DOBViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Employee's DOB"
 
         if let sDate = dateOfBirth {
             let dateFormatter = NSDateFormatter()

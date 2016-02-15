@@ -35,8 +35,8 @@ func drawPersonThumnail(initials:String) -> UIImage? {
         CGContextSetRGBFillColor(context, 1.0, 1.0, 1.0, 1.0)
         CGContextSetStrokeColorWithColor(context, UIColor.whiteColor().CGColor)
         
-        CGContextMoveToPoint(context, -19 , 10)
-        CGContextAddLineToPoint(context, 19, 10)
+        CGContextAddArc(context, 0, 0, 22, 0, CGFloat(M_PI * 2.0), 0)
+
         CGContextStrokePath(context)
         drawNormalText(initials, context: context, origin: CGPointMake(0, 0), x1: 0, y1: 0, align: .ctAlignCenterCenter, fontName: "Helvetica", fontSize: 18, textColor: UIColor.whiteColor())
         

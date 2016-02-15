@@ -20,7 +20,17 @@ class MyTableViewController: UITableViewController,personDataChanged {
         // my iPhone managed 1 million but at 2 million it ran out of memory :)
         let backgroundQueue: dispatch_queue_t = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
         dispatch_async(backgroundQueue) {
-            self.people = Person.generateRandomPeople(10)
+            // Lets have some analysys of how long it takes to create people
+            let totalEmployees = 10
+            let start = NSDate(); // <<<<<<<<<< Start time
+            self.people = Person.generateRandomPeople(totalEmployees)
+            let end = NSDate();   // <<<<<<<<<<   end time
+            let timeInterval: Double = end.timeIntervalSinceDate(start); // <<<<< Difference in seconds (double)
+            
+            let fmt = NSNumberFormatter()
+            fmt.numberStyle = .DecimalStyle
+            let nPeople = fmt.stringFromNumber(totalEmployees)  // with my locale, "2,358,000"
+            print("Time to create \(nPeople!) People: \(timeInterval) seconds");
             dispatch_async(dispatch_get_main_queue()) {
                 self.tableView.reloadData()
             }
@@ -141,7 +151,7 @@ class MyTableViewController: UITableViewController,personDataChanged {
     }
     
     func personDidUpdate() {
-        print("Delegate fired")
+        print("personDidUpdate Delegate fired")
         self.tableView.reloadData()
     }
     
