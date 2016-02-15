@@ -104,6 +104,29 @@ class EditPersonTableViewController: UITableViewController,dobDataChanged {
         tableView.layoutMargins = UIEdgeInsetsZero
     }
     
+    // If you want a section header then we need to return a size
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40
+    }
+    
+    // Put in the new section header view
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UILabel(frame: CGRectMake(0, 0, tableView.frame.size.width, 40))
+        headerView.backgroundColor = UIColor(red: 239.0/255.0, green: 239.0/255.0, blue: 244.0/255.0, alpha: 1)
+        headerView.textColor = UIColor.darkGrayColor()
+        
+        var hdr = "Edit Employee"
+        if let fname = person?.firstname, sname = person?.lastName {
+            hdr = String(format: "Edit Employee: %@ %@", fname, sname)
+        }
+
+        headerView.text = hdr
+        
+        headerView.textAlignment = .Center
+        return headerView
+    }
+    
+
     // MARK: - Navigation
     
     // Not much to do here its a static table defined in interface builder
