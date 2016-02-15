@@ -10,6 +10,7 @@
 		C477E3DE1C709712009BEE6E /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = C477E3DD1C709712009BEE6E /* Person.swift */; };
 		C477E3E01C7097E6009BEE6E /* PersonGraphics.swift in Sources */ = {isa = PBXBuildFile; fileRef = C477E3DF1C7097E6009BEE6E /* PersonGraphics.swift */; };
 		C477E3E21C712DB6009BEE6E /* EditPersonTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C477E3E11C712DB6009BEE6E /* EditPersonTableViewController.swift */; };
+		C490EAA41C720DF5000A07AE /* DOBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C490EAA31C720DF5000A07AE /* DOBViewController.swift */; };
 		C49C139C1C6F986700390ADB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49C139B1C6F986700390ADB /* AppDelegate.swift */; };
 		C49C13A11C6F986700390ADB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C49C139F1C6F986700390ADB /* Main.storyboard */; };
 		C49C13A31C6F986700390ADB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C49C13A21C6F986700390ADB /* Assets.xcassets */; };
@@ -22,6 +23,7 @@
 		C477E3DD1C709712009BEE6E /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		C477E3DF1C7097E6009BEE6E /* PersonGraphics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonGraphics.swift; sourceTree = "<group>"; };
 		C477E3E11C712DB6009BEE6E /* EditPersonTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPersonTableViewController.swift; sourceTree = "<group>"; };
+		C490EAA31C720DF5000A07AE /* DOBViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DOBViewController.swift; sourceTree = "<group>"; };
 		C49C13981C6F986700390ADB /* simpleTableView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = simpleTableView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C49C139B1C6F986700390ADB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C49C13A01C6F986700390ADB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 				C49C13AF1C6F9AF500390ADB /* PeopleGenerator.swift */,
 				C477E3DF1C7097E6009BEE6E /* PersonGraphics.swift */,
 				C477E3E11C712DB6009BEE6E /* EditPersonTableViewController.swift */,
+				C490EAA31C720DF5000A07AE /* DOBViewController.swift */,
 				C49C139F1C6F986700390ADB /* Main.storyboard */,
 				C49C13A21C6F986700390ADB /* Assets.xcassets */,
 				C49C13A41C6F986700390ADB /* LaunchScreen.storyboard */,
@@ -148,6 +151,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C477E3E01C7097E6009BEE6E /* PersonGraphics.swift in Sources */,
+				C490EAA41C720DF5000A07AE /* DOBViewController.swift in Sources */,
 				C49C13B01C6F9AF500390ADB /* PeopleGenerator.swift in Sources */,
 				C49C13AE1C6F99A700390ADB /* MyTableViewController.swift in Sources */,
 				C477E3DE1C709712009BEE6E /* Person.swift in Sources */,

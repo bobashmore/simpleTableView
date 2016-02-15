@@ -10,26 +10,26 @@
 // NOTE this UITableViewController is embeded in a UINavigation controller
 import UIKit
 
-class MyTableViewController: UITableViewController {
+class MyTableViewController: UITableViewController,personDataChanged {
     var people:[Person] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Employee's"
 
         // Create the random dataset in a background thread then update UI on the main thread
+        // my iPhone managed 1 million but at 2 million it ran out of memory :)
         let backgroundQueue: dispatch_queue_t = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
         dispatch_async(backgroundQueue) {
-            self.people = Person.generateRandomPeople(1000)
+            self.people = Person.generateRandomPeople(10)
             dispatch_async(dispatch_get_main_queue()) {
                 self.tableView.reloadData()
             }
         }
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // display an Edit button in the navigation bar for this view controller.
-        self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        // display an Edit and + buttons in the navigation bar for this view controller.
+        let newButton  = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewPerson:")
+        let editButton = editButtonItem()
+        navigationItem.rightBarButtonItems = [ newButton, editButton ]
     }
 
     override func didReceiveMemoryWarning() {
@@ -72,10 +72,10 @@ class MyTableViewController: UITableViewController {
         // Display gender color if gender is not nil
         if let gender = people[indexPath.row].gender {
             if gender == "Male" {
-                cell.backgroundColor = UIColor(red: 0.63, green: 0.8, blue: 0.94, alpha: 1) // Blue
+                cell.backgroundColor = UIColor(red: 0.858, green: 0.923, blue: 0.979, alpha: 1) // Blue
             }
             else {
-                cell.backgroundColor = UIColor(red: 1.0, green: 0.8, blue: 0.9, alpha: 1) // Pink
+                cell.backgroundColor = UIColor(red: 0.979, green: 0.911, blue: 0.911, alpha: 1) // Pink
             }
         }
         // Generate and display the thumbnail
@@ -134,9 +134,19 @@ class MyTableViewController: UITableViewController {
                 let object = self.people[indexPath.row]
                 if let controller = segue.destinationViewController as? EditPersonTableViewController {
                     controller.person = object
+                    controller.delegate = self
                 }
             }
         }
     }
-
+    
+    func personDidUpdate() {
+        print("Delegate fired")
+        self.tableView.reloadData()
+    }
+    
+    func insertNewPerson(sender:AnyObject) {
+        people.append(Person.generateRandomPerson())
+        self.tableView.reloadData()
+    }
 }
