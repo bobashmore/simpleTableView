@@ -208,7 +208,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gah-HV-7SY">
-                                                    <rect key="frame" x="133" y="7" width="367" height="30"/>
+                                                    <rect key="frame" x="133" y="7" width="406" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
@@ -218,7 +218,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Gah-HV-7SY" firstAttribute="leading" secondItem="3lK-Lk-JIn" secondAttribute="trailing" constant="16" id="2Qs-sh-s6Q"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Gah-HV-7SY" secondAttribute="trailing" constant="59" id="5ZJ-aE-xXf"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Gah-HV-7SY" secondAttribute="trailing" constant="20" id="5ZJ-aE-xXf"/>
                                                 <constraint firstItem="Gah-HV-7SY" firstAttribute="top" secondItem="kMe-95-dRE" secondAttribute="topMargin" constant="-1" id="8Sz-kT-ZcA"/>
                                                 <constraint firstItem="3lK-Lk-JIn" firstAttribute="top" secondItem="kMe-95-dRE" secondAttribute="topMargin" constant="3" id="agF-AW-RJt"/>
                                                 <constraint firstItem="3lK-Lk-JIn" firstAttribute="leading" secondItem="kMe-95-dRE" secondAttribute="leadingMargin" constant="12" id="j9P-PM-ZQY"/>

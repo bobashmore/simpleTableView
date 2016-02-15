@@ -22,10 +22,10 @@ class MyTableViewController: UITableViewController,personDataChanged {
         dispatch_async(backgroundQueue) {
             // Lets have some analysys of how long it takes to create people
             let totalEmployees = 10
-            let start = NSDate(); // <<<<<<<<<< Start time
+            let start = NSDate() // <- Start time
             self.people = Person.generateRandomPeople(totalEmployees)
-            let end = NSDate();   // <<<<<<<<<<   end time
-            let timeInterval: Double = end.timeIntervalSinceDate(start); // <<<<< Difference in seconds (double)
+            let end = NSDate()   // <- End time
+            let timeInterval: Double = end.timeIntervalSinceDate(start) // <- Difference in seconds (double)
             
             let fmt = NSNumberFormatter()
             fmt.numberStyle = .DecimalStyle
@@ -95,7 +95,7 @@ class MyTableViewController: UITableViewController,personDataChanged {
         return cell
     }
 
-    // make the seperator lines between cells go all the way to the view's left edge
+    // Make the seperator lines between cells go all the way to the view's left edge
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         cell.layoutMargins = UIEdgeInsetsZero
         tableView.separatorInset = UIEdgeInsetsZero

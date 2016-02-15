@@ -97,7 +97,7 @@ class EditPersonTableViewController: UITableViewController,dobDataChanged {
 
     // MARK: - Table view data source
 
-    // make the seperator lines between cells go all the way to the view's left edge
+    // Make the seperator lines between cells go all the way to the view's left edge
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         cell.layoutMargins = UIEdgeInsetsZero
         tableView.separatorInset = UIEdgeInsetsZero
@@ -126,7 +126,6 @@ class EditPersonTableViewController: UITableViewController,dobDataChanged {
         return headerView
     }
     
-
     // MARK: - Navigation
     
     // Not much to do here its a static table defined in interface builder
@@ -176,12 +175,14 @@ class EditPersonTableViewController: UITableViewController,dobDataChanged {
 
     }
 
+    // dobDataChanged protocol has fired
     func dobDidUpdate(newDOB:String) {
        editDOB.text = newDOB
         editsChanged = true
     }
     
     // Check if the surname is valid and return a tuple with surname or nil and a bool to indicate validity
+    // note the tuple used named variables
     func isSurnameValid() -> (surname:String?,isValid:Bool) {
         if let surname = editSurname.text {
             let trimmedString = surname.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
