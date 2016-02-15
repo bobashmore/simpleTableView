@@ -50,7 +50,7 @@ class Person {
     }
     
     // These two functions are class level functions used to generate random people
-    static func generateRandomPerson() -> Person {
+    class func generateRandomPerson() -> Person {
         var idx = Int(arc4random_uniform(UInt32(surnameArray.count-1)))
         let newPerson = Person(lastName: surnameArray[idx])
         idx = Int(arc4random_uniform(10))
@@ -81,7 +81,7 @@ class Person {
         return newPerson
     }
     
-    static func generateRandomPeople(total:(Int)) -> [Person] {
+    class func generateRandomPeople(total:(Int)) -> [Person] {
         var people:[Person] = []
         
         for _ in 0...total {
