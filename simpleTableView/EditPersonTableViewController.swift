@@ -87,7 +87,9 @@ class EditPersonTableViewController: UITableViewController,dobDataChanged {
         }
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "d MMM y"
-        editDOB.text = dateFormatter.stringFromDate((person?.dateOfBirth)!)
+        if let dob = person?.dateOfBirth {
+            editDOB.text = dateFormatter.stringFromDate(dob)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -153,7 +155,15 @@ class EditPersonTableViewController: UITableViewController,dobDataChanged {
             return
         }
         
-        person?.firstname = editFirstName.text!
+        if let fname = editFirstName.text {
+            if fname.characters.count > 0 {
+                person?.firstname = fname
+            }
+            else {
+                person?.firstname = nil
+            }
+        }
+        
         person?.jobDescription = editJobDescription.text!
         
         if editGender.selectedSegmentIndex == 0 {

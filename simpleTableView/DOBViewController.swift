@@ -17,11 +17,11 @@ class DOBViewController: UIViewController {
     var dateOfBirth:String?
     var delegate: dobDataChanged?
     @IBOutlet weak var dobPicker: UIDatePicker!
+    
     @IBAction func dateChanged(sender: UIDatePicker) {
-        let birthDate = dobPicker.date
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "d MMM y"
-        let sDate = dateFormatter.stringFromDate(birthDate)
+        let sDate = dateFormatter.stringFromDate(dobPicker.date)
         delegate?.dobDidUpdate(sDate)
     }
     

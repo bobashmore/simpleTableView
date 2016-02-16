@@ -36,7 +36,7 @@ class Person {
     var thumbNail:UIImage? {
         get {
             let initials:String
-            if let firstName = self.firstname {
+            if let firstName = self.firstname where firstname?.characters.count > 0 {
                 let index1 = self.lastName.startIndex.advancedBy(1)
                 let index2 = firstName.startIndex.advancedBy(1)
                 initials = self.lastName.substringToIndex(index1) + "." + firstName.substringToIndex(index2) + "."

@@ -75,8 +75,19 @@ class MyTableViewController: UITableViewController,personDataChanged {
         
         // if the job is not nil then display it along with the calculated age
         // using chained optionals for both job and age
+        cell.detailTextLabel?.text = "Age: Not set Job Description: Not set"
         if let job =  people[indexPath.row].jobDescription, ageString = people[indexPath.row].ageString {
             cell.detailTextLabel?.text = String(format:"Age: %@ Job Description: %@",ageString,job)
+        }
+        else {
+            if let ageString = people[indexPath.row].ageString {
+                cell.detailTextLabel?.text = String(format:"Age: %@ Job Description: Not set",ageString)
+            }
+            else {
+                if let job =  people[indexPath.row].jobDescription {
+                    cell.detailTextLabel?.text = String(format:"Age: Not set Job Description: %@",job)
+                }
+             }
         }
         
         // Display gender color if gender is not nil
