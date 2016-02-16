@@ -14,23 +14,27 @@ class MyTableViewController: UITableViewController,personDataChanged {
     var people:[Person] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Employee's"
+        self.title = "People"
 
         // Create the random dataset in a background thread then update UI on the main thread
         // my iPhone managed 1 million but at 2 million it ran out of memory :)
         let backgroundQueue: dispatch_queue_t = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
         dispatch_async(backgroundQueue) {
             // Lets have some analysys of how long it takes to create people
-            let totalEmployees = 10
+            let totalPeople = 1000
             let start = NSDate() // <- Start time
-            self.people = Person.generateRandomPeople(totalEmployees)
+            
+            // Sort the array by surname and within surname by firstname
+            let uspeople = Person.generateRandomPeople(totalPeople)
+            self.people = uspeople.sort { return $0.lastName == $1.lastName ? $0.firstname < $1.firstname : $0.lastName < $1.lastName }
+            
             let end = NSDate()   // <- End time
             let timeInterval: Double = end.timeIntervalSinceDate(start) // <- Difference in seconds (double)
             
             let fmt = NSNumberFormatter()
             fmt.numberStyle = .DecimalStyle
-            let nPeople = fmt.stringFromNumber(totalEmployees)  // with my locale, "2,358,000"
-            print("Time to create \(nPeople!) People: \(timeInterval) seconds");
+            let nPeople = fmt.stringFromNumber(totalPeople)  // with my locale, "2,358,000"
+            print("Time to create and sort \(nPeople!) People: \(timeInterval) seconds");
             dispatch_async(dispatch_get_main_queue()) {
                 self.tableView.reloadData()
             }

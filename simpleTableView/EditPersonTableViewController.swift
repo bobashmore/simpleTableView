@@ -14,6 +14,7 @@ protocol personDataChanged  {
 }
 
 class EditPersonTableViewController: UITableViewController,dobDataChanged {
+    let sectionHeaderHeight:CGFloat = 40.0
     var person:Person?
     var delegate: personDataChanged?
     var saveButton:UIBarButtonItem?
@@ -25,9 +26,8 @@ class EditPersonTableViewController: UITableViewController,dobDataChanged {
                 if isSurnameValid().isValid == false {
                     print("ERROR: Surname invalid will not Save")
                     self.saveButton?.enabled = false
-                   return
+                    return
                 }
-
                 self.saveButton?.enabled = true
             }
             else {
@@ -71,13 +71,13 @@ class EditPersonTableViewController: UITableViewController,dobDataChanged {
         super.viewDidLoad()
         self.title = "Edit"
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        // Add a save button to the right side of the nav bar this allows you to save changes
+        // but if you want to ignore changes made then just navigate back
         saveButton = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "savePerson:")
         navigationItem.rightBarButtonItem = saveButton
-        editsChanged = false
+        editsChanged = false // Nothing has changed at when view first loads
 
-        // get the Person data and put into the edit fields
+        // Get the Person data and put into the edit fields
         editSurname.text = person?.lastName
         editFirstName.text = person?.firstname
         editJobDescription.text = person?.jobDescription
@@ -90,21 +90,23 @@ class EditPersonTableViewController: UITableViewController,dobDataChanged {
                 editGender.selectedSegmentIndex = 1
             }
         }
+        
+        // Get the persons birth date and convert it to a string to display
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "d MMM y"
         if let dob = person?.dateOfBirth {
-            editDOB.text = dateFormatter.stringFromDate(dob)
+            editDOB.text = dateFormatter.stringFromDate(dob) // if date conversion fails this returns nil and that's OK
         }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+       print("Run out of memory in person edit")
     }
 
     // MARK: - Table view data source
 
-    // Make the seperator lines between cells go all the way to the view's left edge
+    // Make the seperator lines between cells go all the way to the table view's left edge
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         cell.layoutMargins = UIEdgeInsetsZero
         tableView.separatorInset = UIEdgeInsetsZero
@@ -113,22 +115,20 @@ class EditPersonTableViewController: UITableViewController,dobDataChanged {
     
     // If you want a section header then we need to return a size
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40
+        return sectionHeaderHeight
     }
     
     // Put in the new section header view
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UILabel(frame: CGRectMake(0, 0, tableView.frame.size.width, 40))
+        let headerView = UILabel(frame: CGRectMake(0, 0, tableView.frame.size.width, sectionHeaderHeight))
         headerView.backgroundColor = UIColor(red: 239.0/255.0, green: 239.0/255.0, blue: 244.0/255.0, alpha: 1)
         headerView.textColor = UIColor.darkGrayColor()
         
-        var hdr = "Edit Employee"
+        var hdr = "Edit Person"
         if let fname = person?.firstname, sname = person?.lastName {
-            hdr = String(format: "Edit Employee: %@ %@", fname, sname)
+            hdr = String(format: "Edit Person: %@ %@", fname, sname)
         }
-
         headerView.text = hdr
-        
         headerView.textAlignment = .Center
         return headerView
     }
@@ -151,6 +151,7 @@ class EditPersonTableViewController: UITableViewController,dobDataChanged {
     
     func savePerson(sender:AnyObject) {
         print("About to Save")
+        // Check that we have a valid Surname
         let retTuple = isSurnameValid()
         if retTuple.isValid == true {
             person?.lastName = retTuple.surname!
@@ -178,21 +179,22 @@ class EditPersonTableViewController: UITableViewController,dobDataChanged {
                 person?.gender = nil
         }
         
+        // Convert the text date back to an NSDate object and store
         if let sDate = editDOB.text {
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "d MMM y"
             person?.dateOfBirth = dateFormatter.dateFromString(sDate)
         }
-        // tell the delegate to update its data
+        
+        // Tell the delegate to update its data
         self.delegate?.personDidUpdate()
         print("Saved OK")
         editsChanged = false
-
     }
 
     // dobDataChanged protocol has fired
     func dobDidUpdate(newDOB:String) {
-       editDOB.text = newDOB
+        editDOB.text = newDOB
         editsChanged = true
     }
     
