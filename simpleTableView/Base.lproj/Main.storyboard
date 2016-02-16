@@ -207,23 +207,35 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gah-HV-7SY">
-                                                    <rect key="frame" x="133" y="7" width="406" height="30"/>
+                                                <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gah-HV-7SY">
+                                                    <rect key="frame" x="133" y="7" width="396" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
                                                         <action selector="editDOBChanged:" destination="eVU-Vh-HO9" eventType="editingChanged" id="hS6-YE-Os7"/>
                                                     </connections>
                                                 </textField>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Di3-XS-uEz">
+                                                    <rect key="frame" x="529" y="2" width="30" height="41"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                    <state key="normal" title="X"/>
+                                                    <connections>
+                                                        <action selector="clearDOB:" destination="eVU-Vh-HO9" eventType="touchUpInside" id="17c-yF-2E5"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Gah-HV-7SY" firstAttribute="leading" secondItem="3lK-Lk-JIn" secondAttribute="trailing" constant="16" id="2Qs-sh-s6Q"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Gah-HV-7SY" secondAttribute="trailing" constant="20" id="5ZJ-aE-xXf"/>
                                                 <constraint firstItem="Gah-HV-7SY" firstAttribute="top" secondItem="kMe-95-dRE" secondAttribute="topMargin" constant="-1" id="8Sz-kT-ZcA"/>
+                                                <constraint firstItem="Di3-XS-uEz" firstAttribute="top" secondItem="kMe-95-dRE" secondAttribute="topMargin" constant="-6" id="B0p-7Y-s6b"/>
+                                                <constraint firstItem="Di3-XS-uEz" firstAttribute="leading" secondItem="Gah-HV-7SY" secondAttribute="trailing" id="U2u-fi-nXs"/>
                                                 <constraint firstItem="3lK-Lk-JIn" firstAttribute="top" secondItem="kMe-95-dRE" secondAttribute="topMargin" constant="3" id="agF-AW-RJt"/>
                                                 <constraint firstItem="3lK-Lk-JIn" firstAttribute="leading" secondItem="kMe-95-dRE" secondAttribute="leadingMargin" constant="12" id="j9P-PM-ZQY"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="Di3-XS-uEz" secondAttribute="trailing" constant="41" id="fEp-Mi-Spf"/>
+                                        </constraints>
                                         <connections>
                                             <segue destination="Klg-Bu-0zr" kind="show" identifier="showDOBEdit" id="itp-DZ-jtc"/>
                                         </connections>

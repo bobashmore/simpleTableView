@@ -36,6 +36,11 @@ class EditPersonTableViewController: UITableViewController,dobDataChanged {
         }
     }
     
+    @IBAction func clearDOB(sender: AnyObject) {
+        editDOB.text = ""
+        editsChanged = true
+    }
+    
     @IBAction func editSurnameChanged(sender: UITextField) {
         print("Surname Updated")
         editsChanged = true
@@ -155,22 +160,22 @@ class EditPersonTableViewController: UITableViewController,dobDataChanged {
             return
         }
         
+        // An empty UITextField returns "" and not nil but we want the field to be nil when it has no content
         if let fname = editFirstName.text {
-            if fname.characters.count > 0 {
-                person?.firstname = fname
-            }
-            else {
-                person?.firstname = nil
-            }
+            person?.firstname = (fname.isEmpty) ? nil : fname
+        }
+
+        if let jdesc = editJobDescription.text {
+            person?.jobDescription = (jdesc.isEmpty) ? nil : jdesc
         }
         
-        person?.jobDescription = editJobDescription.text!
-        
-        if editGender.selectedSegmentIndex == 0 {
-            person?.gender = "Male"
-        }
-        else {
-            person?.gender = "Female"
+        switch editGender.selectedSegmentIndex {
+            case 0:
+                person?.gender = "Male"
+            case 1:
+                person?.gender = "Female"
+            default:
+                person?.gender = nil
         }
         
         if let sDate = editDOB.text {
